@@ -12,5 +12,9 @@
 </head>
 <body>
 <h1>Calc Input JSP</h1>
+<form method = "post" action="calc"><!--action은생략가능, 생략하면 그 url 그대로 갈수있음.-->
+    <button type="submit">SUBMIT</button>
+
+</form>
 </body>
 </html>

@@ -5,7 +5,12 @@
     <Appenders>
         <!-- 콜솔 -->
         <Console name="console" target="SYSTEM_OUT">
+            <!--요 appender는 system_out,, 콘솔창에 찍힘-->
+            <!--실무에서는, 보통 console과 file 모두에 남김.-->
+
             <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss} %5p [%c] %m%n"/>
+            <!--pattern은 로그 메세지를 어떻게 남길것인지 설정.-->
+
         </Console>
     </Appenders>
 
