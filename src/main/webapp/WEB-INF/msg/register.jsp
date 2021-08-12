@@ -23,38 +23,34 @@
     </section>
     <hr class="m-0" />
     <!-- Experience-->
-    <section class="resume-section" id="Receive">
-        <div class="resume-section-content">
-            <h2 class="mb-5">받는 메시지</h2>
-            <c:forEach items="${Receive}" var="dto">
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0"><a href="/msg/read?mno=${dto.mno}">${dto.mno}</a> - ${dto.who}</h3>
-                    <div class="subheading mb-3">Intelitec Solutions</div>
-                    <p>${dto.content}</p>
-                </div>
-                <div class="flex-shrink-0"><span class="text-primary">${dto.regdate}</span></div>
-            </div>
-            </c:forEach>
-
-    </section>
-    <!-- Experience-->
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
-            <h2 class="mb-5">보낸 메시지</h2>
-            <c:forEach items="${Send}" var="dto">
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0">${dto.mno} - ${dto.who}</h3>
-                    <div class="subheading mb-3">Intelitec Solutions</div>
-                    <p>${dto.content}</p>
+            <h2 class="mb-5">Register</h2>
+            <form action="/msg/register" method ="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">WHO</span>
+                    </div>
+                    <input type="text" name="who" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
-                <div class="flex-shrink-0"><span class="text-primary">${dto.regdate}</span></div>
-            </div>
-            </c:forEach>
-
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2">WHOM</span>
+                    </div>
+                    <input type="text" name="whom" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">WHOM</span>
+                    </div>
+                    <input type="text" name="content" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                </div>
+            </form>
+        </div>
     </section>
-
 </div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

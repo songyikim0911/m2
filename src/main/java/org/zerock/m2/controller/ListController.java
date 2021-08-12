@@ -24,7 +24,11 @@ public class ListController extends HttpServlet {
 
         log.info("list controller doGet....");
 
-        Map<String, List<MsgDTO>> result = MsgService.INSTANCE.getList("user5");
+        String user = request.getParameter("whom");
+                //쿼리 스트링에서 데이터 뽑을때 제일 많이 쓰이는 구문 request.getParameter
+
+        Map<String, List<MsgDTO>> result = MsgService.INSTANCE.getList(user);
+        //"user"로 앞에서 받은 whom값 넣어주기. ?whom=user5 식으로 URL 통해 값 전달가능
         //현재 목록이 R목록(받는), S목록(보내는) 2종류이기 때문에 따로따로 보내는 것이 좋다.
         //최대한 펴서 보내주기.
         //jsp(view)로 택배 전달 ,,

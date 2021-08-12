@@ -13,6 +13,19 @@ public enum MsgService {
 
     INSTANCE;//인스턴스의 갯수를 정할 수 있는데, 하나만 만들 경우 보통 이 이름으로 만듬.
 
+    public void register(MsgDTO msgDTO) throws RuntimeException{
+
+        log.info("service register...." + msgDTO);
+
+        MsgDAO.INSTANCE.insert(msgDTO);
+
+    }
+
+    public MsgDTO read(Long mno) throws RuntimeException{
+        return MsgDAO.INSTANCE.select(mno);
+    }
+
+
     //DAO호출, 호출 시 얼마나 걸리는지 log로 남기면 나중에 걸리는시간을 변경하는 튜닝이 가능해짐.
     public Map<String, List<MsgDTO>> getList(String user) throws RuntimeException{
         //고객이 원하는것을 가져오고 싶음, getList

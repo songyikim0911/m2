@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 
-@Data
+@Data//getter,setter,toString,hashtag 다 만들어짐.
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

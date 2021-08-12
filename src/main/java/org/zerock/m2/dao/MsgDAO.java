@@ -21,6 +21,54 @@ public enum MsgDAO {
             "where whom=? or who=? \n" +
             "order by kind asc, mno desc";
 
+    private static final String SQL_SELECT = "select mno, who, whom, content, regdate," +
+            "opendate from tbl_msg where mno=?";
+// ?에 넣는 mno에 해당하는, 값들 ( mno, who, whom,content,regdate,opendate)을 확인하는 구문
+    //mno를 조건으로 값을 조회하는 구문
+
+
+    private static final String SQL_UPDATE_OPEN = "update tbl_msg set opendate = now() where mno = ?";
+
+    public MsgDTO select(Long mno) throws RuntimeException{
+
+    MsgDTO msgDTO = MsgDTO.builder().build();
+
+        new JdbcTemplate() {
+            @Override
+            protected void execute() throws Exception {
+
+                preparedStatement = connection.prepareStatement(SQL_UPDATE_OPEN);
+                preparedStatement.setLong(1,mno);
+
+                preparedStatement.executeUpdate();
+
+                preparedStatement.close();
+                preparedStatement = null;
+
+                preparedStatement = connection.prepareStatement(SQL_SELECT);
+                preparedStatement.setLong(1,mno);
+                resultSet= preparedStatement.executeQuery();
+
+                resultSet.next();
+                //mno,who, whom,content,regdate,
+                //opnedate
+
+                msgDTO.setMno(resultSet.getLong(1));
+                msgDTO.setWho(resultSet.getString(2));
+                msgDTO.setWhom(resultSet.getString(3));
+                msgDTO.setWhom(resultSet.getString(3));
+                msgDTO.setContent(resultSet.getString(4));
+                msgDTO.setRegdate(resultSet.getTimestamp(5));
+
+                msgDTO.setOpendate(resultSet.getTimestamp(6));
+
+
+            }
+        }.makeAll();
+    return msgDTO;
+    }
+
+
     public void insert(MsgDTO msgDTO) throws RuntimeException {
 
         new JdbcTemplate() {

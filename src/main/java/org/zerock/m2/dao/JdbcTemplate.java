@@ -32,7 +32,7 @@ abstract class JdbcTemplate {  //클래스가 퍼블릭일 필요가 없다. dao
             log.info("END");
         }catch(Exception e){
             log.error(e.getMessage());    // 어떤문제 생겼는지.
-            throw  new RuntimeException(e.getMessage());  //에러를 던져준다.
+            throw new RuntimeException(e.getMessage());  //에러를 던져준다.
         }finally {
             finish();
         }
