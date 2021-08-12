@@ -41,8 +41,8 @@ public enum MsgDAO {
 
         public Map<String, List<MsgDTO>> selectList(String user)throws RuntimeException{
             Map<String, List<MsgDTO>> listMap = new HashMap<>();
-            listMap.put("R", new ArrayList<>());
-            listMap.put("S", new ArrayList<>());
+            listMap.put("R", new ArrayList<>());//receive
+            listMap.put("S", new ArrayList<>());//send
 
             new JdbcTemplate(){
                 @Override
