@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Log4j2
-@WebServlet(name = "ListController", value = "/msg/list")
+@WebServlet(name = "ListController",  value = "/msg/list")
 // /msg/list 는 컨트롤러의 경로!!
 //모든 request는 컨트롤러가 제일먼저 받는다.
 public class ListController extends HttpServlet {

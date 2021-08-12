@@ -27,24 +27,30 @@
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
             <h2 class="mb-5">Register</h2>
-            <form action="/msg/register" method ="post">
+            <form action="/msg/remove" method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon0">MNO</span>
+                    </div>
+                    <input type="text" name="mno" value="${dto.mno}" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">WHO</span>
                     </div>
-                    <input type="text" name="who" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" name="who" value="${dto.who}" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon2">WHOM</span>
                     </div>
-                    <input type="text" name="whom" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" name="whom" value="${dto.whom}" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">CONTENT</span>
                     </div>
-                    <input type="text" name="content" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" name="content" value="${dto.content}" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary float-right">Submit</button>
