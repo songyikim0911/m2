@@ -2,6 +2,7 @@ package org.zerock.m2.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.zerock.m2.dto.MemberDTO;
+import org.zerock.m2.service.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,23 +34,36 @@ public class LoginController extends HttpServlet {
         //파라미터 수집, mid mpw
         String mid = request.getParameter("mid");
         String mpw = request.getParameter("mpw");
-        /*사용자 정보 -  정보 구한다.  ----> 실패시) 사용자의 정보가 없다.
-        -->다시 get방식으로 로그인페이지 값*/
-        MemberDTO memberDTO =MemberDTO.builder()
-                .mid(mid)
-                .mpw(mpw)
-                .mname("사용자"+mid)
-                .nickname("사용자"+mid)
-                .build();
 
-        //세션에 setAttribute("member", 사용자 정보)
+        try{
 
-        HttpSession session = request.getSession();
-        session.setAttribute("member", memberDTO);
+//        /*사용자 정보 -  정보 구한다.  ----> 실패시) 사용자의 정보가 없다.
+//        -->다시 get방식으로 로그인페이지 값*/
+//        MemberDTO memberDTO =MemberDTO.builder()
+//                .mid(mid)
+//                .mpw(mpw)
+//                .mname("사용자"+mid)
+//                .nickname("사용자"+mid)
+//                .build();
+            MemberDTO memberDTO = MemberService.INSTANCE.login(mid,mpw);
 
-        //   /msg/list 로 리다이렉트 시킨다.
+            //세션에 setAttribute("member", 사용자 정보)
 
-        response.sendRedirect("/msg/list");
+            HttpSession session = request.getSession();
+            session.setAttribute("member", memberDTO);
+
+            //   /msg/list 로 리다이렉트 시킨다.
+
+            response.sendRedirect("/msg/list");
+
+
+        }catch(Exception e){
+            log.error("Login fail.." + e.getMessage());
+            response.sendRedirect("/login?result=fail");
+
+
+        }
+
 
 
     }

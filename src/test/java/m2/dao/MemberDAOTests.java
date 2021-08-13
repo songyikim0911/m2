@@ -10,6 +10,7 @@ public class MemberDAOTests {
 
     @Test
     public void testLogin(){
+
         String mid = "user1";
         String mpw = "user1";
 

@@ -76,7 +76,6 @@ public enum MsgDAO {
                 msgDTO.setMno(resultSet.getLong(1));
                 msgDTO.setWho(resultSet.getString(2));
                 msgDTO.setWhom(resultSet.getString(3));
-                msgDTO.setWhom(resultSet.getString(3));
                 msgDTO.setContent(resultSet.getString(4));
                 msgDTO.setRegdate(resultSet.getTimestamp(5));
 

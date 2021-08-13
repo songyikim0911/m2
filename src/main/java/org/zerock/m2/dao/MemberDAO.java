@@ -6,14 +6,15 @@ public enum MemberDAO {
 
     INSTANCE;
 
-    private static final String SQL_LOGIN="select mid,mpw,mname,nickname,regdate,joindate,moddate \n" +
+    private static final String SQL_LOGIN ="select mid,mpw,mname,nickname,joindate,moddate\n" +
             "from tbl_member\n" +
-            "where mid =? and mpw=?";
+            "where mid=? and mpw=?";
 
 
     public MemberDTO selectForLogin(String mid, String mpw) throws RuntimeException{
 
         MemberDTO dto = MemberDTO.builder().build();
+
         new JdbcTemplate(){
             @Override
             protected void execute() throws Exception {
