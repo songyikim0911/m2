@@ -29,6 +29,22 @@ public enum MsgDAO {
 
     private static final String SQL_UPDATE_OPEN = "update tbl_msg set opendate = now() where mno = ?";
 
+    private static final String SQL_DELETE = "delete from tbl_msg where mno=? and who=?";
+
+    public void delete(Long mno, String who) throws RuntimeException{
+        new JdbcTemplate() {
+            @Override
+            protected void execute() throws Exception {
+
+                preparedStatement = connection.prepareStatement(SQL_DELETE);
+                preparedStatement.setLong(1, mno);
+                preparedStatement.setString(2, who);
+                preparedStatement.executeUpdate();
+
+            }
+        }.makeAll();
+    }
+
     public MsgDTO select(Long mno) throws RuntimeException{
 
     MsgDTO msgDTO = MsgDTO.builder().build();

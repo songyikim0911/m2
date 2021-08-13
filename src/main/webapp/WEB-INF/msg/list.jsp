@@ -34,7 +34,7 @@
                     <div class="subheading mb-3">Intelitec Solutions</div>
                     <p>${dto.content}</p>
                 </div>
-                <div class="flex-shrink-0"><span class="text-primary">${dto.regdate}</span></div>
+                <div class="flex-shrink-0"><span class="text-primary">${dto.opendate}</span></div>
             </div>
             </c:forEach>
 

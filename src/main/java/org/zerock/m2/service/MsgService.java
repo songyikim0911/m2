@@ -13,6 +13,12 @@ public enum MsgService {
 
     INSTANCE;//인스턴스의 갯수를 정할 수 있는데, 하나만 만들 경우 보통 이 이름으로 만듬.
 
+    public void remove(Long mno, String who) throws RuntimeException{
+        log.info("service remove..." + mno, who);
+        MsgDAO.INSTANCE.delete(mno, who);
+
+    }
+
     public void register(MsgDTO msgDTO) throws RuntimeException{
 
         log.info("service register...." + msgDTO);

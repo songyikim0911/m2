@@ -13,6 +13,15 @@ import java.util.stream.IntStream;
 public class MsgDAOTests {
 
     @Test
+    public void testDelete(){
+        Long mno=2L;
+        String who = "user1";
+       MsgDAO.INSTANCE.delete(mno,who);
+       log.info("aa");
+
+    }
+
+    @Test
     public void testSelect(){
         Long mno = 117L;
         log.info(MsgDAO.INSTANCE.select(mno));

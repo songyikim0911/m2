@@ -53,7 +53,7 @@
                     <input type="text" name="content" value="${dto.content}" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    <button type="submit" class="btn btn-primary float-right">Delete</button>
                 </div>
             </form>
         </div>
