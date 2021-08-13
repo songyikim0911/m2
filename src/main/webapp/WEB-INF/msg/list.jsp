@@ -30,7 +30,7 @@
             <c:forEach items="${Send}" var="dto">
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">${dto.mno} - ${dto.who}</h3>
+                    <h3 class="mb-0">${dto.mno} - ${dto.whom}</h3>
                     <div class="subheading mb-3">Intelitec Solutions</div>
                     <p>${dto.content}</p>
                 </div>

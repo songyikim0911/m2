@@ -15,11 +15,13 @@ public enum MsgDAO {
 
     private static final String SQL_INSERT = "insert into tbl_msg (who,whom,content) values(?,?,?)";
 
-    private static final String SQL_LIST = "select mno, who, whom, if(who = ?, 'R', 'S') kind, content, regdate, opendate\n" +
-            "from\n" +
-            "tbl_msg \n" +
-            "where whom=? or who=? \n" +
+    private static final String SQL_LIST ="select mno, who,  whom, if(whom = ? ,'R','S') kind, content, regdate, opendate\n" +
+            "from \n" +
+            "  tbl_msg \n" +
+            "where \n" +
+            "  whom = ? or who =? \n" +
             "order by kind asc, mno desc";
+
 
     private static final String SQL_SELECT = "select mno, who, whom, content, regdate," +
             "opendate from tbl_msg where mno=?";

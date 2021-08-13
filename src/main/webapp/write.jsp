@@ -7,11 +7,11 @@
 --%>
 <%
   //HttpSession session = request.getSession();
-  Object obj = session.getAttribute("name");
+  Object obj = session.getAttribute("member");
   //로그인 한적이 없다면 null이 나올것 -> 그런 경우 로그인페이지로 redirect 코드
 
   if(obj == null){
-    response.sendRedirect("/login.jsp");
+    response.sendRedirect("/login?result=fail");
     return;
   }
 %>

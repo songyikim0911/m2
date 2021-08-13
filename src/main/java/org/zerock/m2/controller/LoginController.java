@@ -13,7 +13,7 @@ import java.io.IOException;
 
 //GET일때는 아이디와 패스워드 입력
 //POST일때는 로그인 처리 -> /msg/list
-@WebServlet(name="", value="")
+@WebServlet(name="/LoginController", value="/login")
 @Log4j2
 public class LoginController extends HttpServlet {
 
@@ -49,6 +49,7 @@ public class LoginController extends HttpServlet {
 
         //   /msg/list 로 리다이렉트 시킨다.
 
+        response.sendRedirect("/msg/list");
 
 
     }

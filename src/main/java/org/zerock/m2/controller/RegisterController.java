@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Log4j2
@@ -19,6 +20,16 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("등록 화면 조회");
+
+        //로그인 체크 로직
+        HttpSession session = request.getSession();
+        Object memberObj = session.getAttribute("member");
+
+        //로그인 관련 정보 없음 - 로그인 안한 사용자.
+        if(memberObj == null){
+            response.sendRedirect("/login");
+            return;//반환하는 키워드가 아님
+        }
 
         request.getRequestDispatcher("/WEB-INF/msg/register.jsp")
                 .forward(request,response);
