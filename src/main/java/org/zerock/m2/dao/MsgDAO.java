@@ -59,16 +59,18 @@ public enum MsgDAO {
                 preparedStatement.executeUpdate();
 
                 preparedStatement.close();
-                preparedStatement = null;
+                preparedStatement = null;//첫번째 쿼리 끝, 비우기.
 
                 preparedStatement = connection.prepareStatement(SQL_SELECT);
                 preparedStatement.setLong(1,mno);
                 resultSet= preparedStatement.executeQuery();
+                //1)쿼리를 set해서 실행.resultSet에 값담음
 
                 resultSet.next();
                 //mno,who, whom,content,regdate,
                 //opnedate
 
+                //2)resultSet에 담은값을 get해서 msgDTO에 담기.
                 msgDTO.setMno(resultSet.getLong(1));
                 msgDTO.setWho(resultSet.getString(2));
                 msgDTO.setWhom(resultSet.getString(3));
