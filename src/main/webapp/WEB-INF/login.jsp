@@ -21,15 +21,17 @@
     }
 </style>
 
-<c:if test = "${param.result != null}">
+<c:if test = "${ param.result != null}">
+    <!--값이 있으면 (기존 세션 쿠키를 가지고 있다면 ) , 로그인 실패로 간주하고
+    아래 문장을 실행 -->
 <div class="warnDiv">
     <h1>Login Failed</h1>
     </div>
 </c:if>
-
 <form action="/login" method="post">
     <input type="text" name ="mid">
     <input type="text" name ="mpw">
+    <input type="checkbox" name="remember">Remember-me
     <button type="submit">LOGIN</button>
 </form>
 

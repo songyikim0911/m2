@@ -29,16 +29,46 @@ public class ListController extends HttpServlet {
         HttpSession session = request.getSession();
         Object memberObj = session.getAttribute("member");
 
+        //2개 혹은 1개!
+        Cookie[] allCookies = request.getCookies();
+        boolean checkCookie = false;
+
+        String user = null;
+
+        //로그인 후 브라우저 종료 -> 로그인쿠키는 파일에 저장되있고 세션쿠키는삭제됨
+        //재로그인시 로그인쿠키1개만으로 인증가능 이러한 로그인쿠키를 가진지 체크하는 로직이 아래 로직임.
+        if(allCookies != null && allCookies.length > 0 ){//if 쿠키가 1개이상이라도 존재한다면, 아래 루프!
+            for(int i = 0; i< allCookies.length; i++){
+                Cookie ck = allCookies[i];//ck에 쿠키값을 집어넣음.
+                if(ck.getName().equals("login")){//로그인이라는 이름이 있다 -> 로그인한 사용자라는 의미.
+                    checkCookie = true;
+                    user = ck.getValue();//값을 얻어서, user에 셋팅.
+                    //기존 정보로 진행 하는 경우. 우리에게 mid 만 필요하고, 해당 값은 이미 login쿠키안에 있다.
+                }
+            }
+        }
+
+
+
         //로그인 관련 정보 없음 - 로그인 안한 사용자.
-        if(memberObj == null){
+        if(memberObj == null && checkCookie == false){
+            //checkCookie == false조건 추가, 쿠키정보도 없는지 확인해야. chckCookie가 없거나 만료된 쿠키면 null이다.
+            //참고로, 만료된 쿠키는 브라우저가 보내지 않아서 신경 쓸 필요가없다.
             response.sendRedirect("/login");
             return;//반환하는 키워드가 아님
         }
 
-        MemberDTO memberDTO = (MemberDTO)memberObj;
-        //다운 캐스팅 : 어떤 객체를 바라볼때 객체의 타입을 특정한 타입으로 줄여서 보는 것.
+        //쿠키로 접속한 경우 memberObj는 null이됨..
+        //이런 경우, 쿠키에 있는 정보 중 멤버 정보를 가져와야함
+        //단, 쿠키에 있는 정보는 id만 있음..!
 
-        String user = memberDTO.getMid();
+
+        if(memberObj !=null){ //새로 로그인한 사용자에 대한 로직.  세션에서 부터 값을 가져와서 아래 로직진행.
+            MemberDTO memberDTO = (MemberDTO)memberObj;
+            //다운 캐스팅 : 어떤 객체를 바라볼때 객체의 타입을 특정한 타입으로 줄여서 보는 것.
+            user = memberDTO.getMid();
+        }
+
 
 //        String user = request.getParameter("whom"); (기존에 있던 문장)
 //                //쿼리 스트링에서 데이터 뽑을때 제일 많이 쓰이는 구문 request.getParameter
@@ -53,6 +83,7 @@ public class ListController extends HttpServlet {
 
 
         request.getRequestDispatcher("/WEB-INF/msg/list.jsp").forward(request, response);
+
 
 
 

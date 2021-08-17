@@ -66,5 +66,16 @@ public class MsgDAOTests {
     }
 
 
+    @Test
+    public void testSelfList() {
+
+       Map<String, List<MsgDTO>> test = MsgDAO.INSTANCE.selectList("user3");
+
+
+
+    }
+
+
+
 }
 

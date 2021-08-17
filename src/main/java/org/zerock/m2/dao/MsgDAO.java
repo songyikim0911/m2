@@ -128,7 +128,10 @@ public enum MsgDAO {
 
                         String kind = resultSet.getString(4);
 
+                        //여쭤보기, listMap.get 또는 휴일에 맵 더 공부해보자!
                         List<MsgDTO> targetList = listMap.get(kind);
+
+
                         //mno, who, whom, if(who = ?, 'R', 'S') kind, content,
                         // regdate, opendate
 
@@ -140,6 +143,8 @@ public enum MsgDAO {
                                 .regdate(resultSet.getTimestamp(6))
                                 .opendate(resultSet.getTimestamp(7))
                                 .build());
+
+
 
                     }
                 }

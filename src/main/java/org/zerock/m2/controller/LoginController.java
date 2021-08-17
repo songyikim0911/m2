@@ -6,10 +6,7 @@ import org.zerock.m2.service.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 //GET일때는 아이디와 패스워드 입력
@@ -34,6 +31,7 @@ public class LoginController extends HttpServlet {
         //파라미터 수집, mid mpw
         String mid = request.getParameter("mid");
         String mpw = request.getParameter("mpw");
+        String remember = request.getParameter("remember");
 
         try{
 
@@ -52,8 +50,14 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("member", memberDTO);
 
-            //   /msg/list 로 리다이렉트 시킨다.
+            if(remember !=null) {
+                Cookie loginCookie = new Cookie("login", mid);
+                loginCookie.setMaxAge(60 * 60 * 24 * 7);// (60초 60 분 24시간) * 7 days
+                response.addCookie(loginCookie);
 
+            }
+
+            //   /msg/list 로 리다이렉트 시킨다.
             response.sendRedirect("/msg/list");
 
 
